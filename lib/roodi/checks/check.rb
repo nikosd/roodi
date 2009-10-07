@@ -29,7 +29,9 @@ module Roodi
       def evaluate_node(position, node)
         @node = node
         eval_method = "evaluate_#{position}_#{node.node_type}"
-        self.send(eval_method, node)
+        begin
+          self.send(eval_method, node)
+        rescue ArgumentError; end
       end
 
       def evaluate_node_start(node)
